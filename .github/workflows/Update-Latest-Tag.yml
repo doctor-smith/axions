@@ -8,7 +8,7 @@ on:
       - main
 
 env:
-  UPDATE_TAGS_TOKEN: ${{ secrets.UPDATE_TAGS_TOKEN }}
+  GH_TOKEN: ${{ secrets.UPDATE_TAGS_TOKEN }}
   HOST: https://github.com
   REPO: doctor-smith/axions
 
