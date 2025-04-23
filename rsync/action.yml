@@ -1,0 +1,43 @@
+name: Rsync
+description: Rsync files
+
+inputs:
+  HOST:
+    description: Host
+    required: true
+  PORT:
+    description: SSH port to use
+    required: true
+  USER:
+    description: User
+    required: true
+  OPTIONS:
+    description: |
+      Rsync options
+      Hint: no leading "-"-sign
+    required: true
+  SOURCE_FOLDER:
+    description: |
+      Source folder to sync
+      Hint: Respects rsync notations -> Slashes at the end of the paths
+    required: true
+  TARGET_FOLDER:
+    description: |
+      Target folder to sync
+      Hint: Respects rsync notations -> Slashes at the end of the paths
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Add SSH known host
+      shell: bash
+      run: |
+        ssh-keyscan -p ${{ inputs.PORT }} ${{ inputs.HOST }} >> ~/.ssh/known_hosts
+
+    - name: Rsync
+      shell: bash
+      run: |
+        rsync -av${{ inputs.OPTIONS }} -e "ssh -p ${{ inputs.PORT }}" \
+          "${{ inputs.SOURCE_FOLDER }}" \
+          "${{ inputs.USER }}@${{ inputs.HOST }}:${{ inputs.TARGET_FOLDER }}"
