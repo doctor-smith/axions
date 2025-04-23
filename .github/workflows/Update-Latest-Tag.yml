@@ -8,7 +8,7 @@ on:
       - main
 
 env:
-  GH_ENTERPRISE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  UPDATE_TAGS_TOKEN: ${{ secrets.UPDATE_TAGS_TOKEN }}
 
 permissions:
   contents: write
