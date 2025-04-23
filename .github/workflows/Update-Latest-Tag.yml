@@ -9,7 +9,7 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.UPDATE_TAGS_TOKEN }}
-  HOST: https://github.com
+  HOST: github.com
   REPO: doctor-smith/axions
 
 permissions:
