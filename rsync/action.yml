@@ -34,12 +34,11 @@ runs:
       shell: bash
       run: |
         ssh-keyscan -p ${{ inputs.PORT }} ${{ inputs.HOST }} >> ~/.ssh/known_hosts
-        run: ssh -vvv -p ${{ inputs.PORT }} ${{ inputs.USER }}@${{ inputs.HOST }} "echo Connected"
 
     - name: Test Connection
       shell: bash
       run: |
-        run: ssh -vvv -p ${{ inputs.PORT }} ${{ inputs.USER }}@${{ inputs.HOST }} "echo Connected"
+        ssh -vvv -p ${{ inputs.PORT }} ${{ inputs.USER }}@${{ inputs.HOST }} "echo Connected"
 
     - name: Rsync
       shell: bash
